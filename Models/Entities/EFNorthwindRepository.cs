@@ -16,10 +16,17 @@ namespace Northwind.Models
         public IQueryable<Product> Products => context.Products;
         public IQueryable<Discount> Discounts => context.Discounts;
         public IQueryable<Customer> Customers => context.Customers;
+        public IQueryable<Employees> Employees => context.Employees;
 
         public void AddCustomer(Customer customer)
         {
             context.Customers.Add(customer);
+            context.SaveChanges();
+        }
+
+        public void AddEmployee(Employees employee)
+        {
+            context.Employees.Add(employee);
             context.SaveChanges();
         }
 
@@ -33,6 +40,20 @@ namespace Northwind.Models
             customerToUpdate.Country = customer.Country;
             customerToUpdate.Phone = customer.Phone;
             customerToUpdate.Fax = customer.Fax;
+            context.SaveChanges();
+        }
+
+        public void EditEmployee(Employees employee)
+        {
+            var employeeToUpdate = context.Employees.FirstOrDefault(e => e.EmployeeId == employee.EmployeeId);
+            //TODO: employee changes
+            //customerToUpdate.Address = customer.Address;
+            //customerToUpdate.City = customer.City;
+            //customerToUpdate.Region = customer.Region;
+            //customerToUpdate.PostalCode = customer.PostalCode;
+            //customerToUpdate.Country = customer.Country;
+            //customerToUpdate.Phone = customer.Phone;
+            //customerToUpdate.Fax = customer.Fax;
             context.SaveChanges();
         }
     }

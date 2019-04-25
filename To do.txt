@@ -1,0 +1,2 @@
+Create the Employee model.
+Setup Identity framework for employees (follow the steps for Customer)
