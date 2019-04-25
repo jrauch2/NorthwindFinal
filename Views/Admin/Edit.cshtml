@@ -1,0 +1,27 @@
+﻿@using Northwind.Models
+@model AppUser
+
+<div class="bg-primary m-1 p-1 text-white"><h4>Edit User</h4></div>
+@* the div where error messages are displayed *@
+<div asp-validation-summary="All" class="text-danger"></div>
+@* asp-action calls the Edit method in the Admin controller via post method*@
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        @*asp-for attaches the input to the Id property in the Model (AppUser)*@
+        <label asp-for="Id"></label>
+        <input asp-for="Id" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        @*asp-for attaches the input to the Email property in the Model (AppUser)*@
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        @*AppUser does not have a Password property, that would be insecure*@
+        <label for="password">Password</label>
+        <input name="password" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Save</button>
+    @*asp-action directs to the Index of the Admin controller*@
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+</form>

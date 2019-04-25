@@ -1,0 +1,37 @@
+﻿@using Northwind.Models
+@model AllUsersModel
+
+<div class="bg-primary m-1 p-1 text-white"><h4>User Accounts</h4></div>
+
+<table class="table table-sm table-bordered">
+    <tr><th>Id</th><th>Name</th><th>Email</th></tr>
+    @if (Model.AppUsers.Count() == 0)
+    {
+        <tr><td colspan="3" class="text-center">No User Accounts</td></tr>
+    }
+    else
+    {
+        foreach (AppUser user in Model.AppUsers)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>
+                    @*asp-action directs to the Delete method in the Home controller*@
+                    <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                        @*asp-action calls the Edit mothod in the Home Controller
+                            asp-route-id passes the user id to the Edit controller method
+                            so that the method will be able to locate the user*@
+                        <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<a class="btn btn-outline-primary" asp-action="Create">Create</a>
+<hr />
+<a asp-controller="RoleAdmin">Roles</a>
